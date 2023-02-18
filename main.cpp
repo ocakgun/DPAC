@@ -17,9 +17,10 @@ int main()
     int input_count, output_count = 0;
     vector<double> slew_rates = {0.1, 0.2, 0.3};
     vector<double> out_loads = {15e-15, 15e-15, 15e-15};
-    ifstream input_file("NAND3D0BWP.arcs");
+    string filename = "NAND3D0BWP.arcs";
+    ifstream input_file(filename);
     if (0==(input_file.is_open())){
-            cout << "Cannot open file:" << "NAND3D0BWP.arcs" << endl;
+            cout << "Cannot open file:" << filename << endl;
             return -1;
     }
     
