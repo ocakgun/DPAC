@@ -16,7 +16,7 @@ int main()
 {
     int input_count, output_count = 0;
     vector<double> slew_rates = {0.1, 0.2, 0.3};
-    vector<double> out_loads = {15e-15, 15e-15, 15e-15};
+    vector<double> out_loads = {10e-15, 15e-15, 20e-15};
     string filename = "NAND3D0BWP.arcs";
     ifstream input_file(filename);
     if (0==(input_file.is_open())){
@@ -29,8 +29,8 @@ int main()
     cout << "Outputs:" << output_count << endl;
     
     // Generate runset for each arc x capacitance x load
-    for (double capacitance : out_loads){
-        for (double slew : slew_rates){
+    for (double slew : slew_rates){
+        for (double capacitance : out_loads){
             for (string arc : arcs)
             {
                 generateTestForArc(arc, slew, capacitance, "rise", "fall");

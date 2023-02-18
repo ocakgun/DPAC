@@ -3,6 +3,10 @@
 #include <vector>
 #include <sstream>
 #include <fstream>
+#include <bits/stdc++.h>
+#include <iostream>
+#include <sys/stat.h>
+#include <sys/types.h>
 #include <math.h>
 
 void print_logo(){
@@ -11,8 +15,32 @@ void print_logo(){
 
 void generateTestForArc(string arcName, double slew, double capacitance, string inputTransition, string outputTransition)
 {
+    string directory = "outputs";
     // Open output file for writing
-    string fileName = "outputs/" + arcName + "_" + inputTransition + "_" + outputTransition + ".sp";
+    if (mkdir(directory.c_str(), 0777) == -1){
+        cerr << "Error :  " << strerror(errno) << endl;
+    }
+    else{
+        cout << "Directory created";
+    }
+    directory = "outputs/" + to_string(slew) + "ns";
+    // Open output file for writing
+    if (mkdir(directory.c_str(), 0777) == -1){
+        cerr << "Error :  " << strerror(errno) << endl;
+    }
+    else{
+        cout << "Directory created";
+    }
+    directory = "outputs/" + to_string(slew) + "ns" + "/" + to_string(capacitance*1e15) + "fF";
+    // Open output file for writing
+    if (mkdir(directory.c_str(), 0777) == -1){
+        cerr << "Error :  " << strerror(errno) << endl;
+    }
+    else{
+        cout << "Directory created";
+    }
+
+    string fileName =  directory + "/" + arcName + "_" + inputTransition + "_" + outputTransition + ".sp";
     ofstream outFile(fileName);
 
     // Write out header

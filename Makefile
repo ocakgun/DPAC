@@ -18,3 +18,4 @@ $(EXECUTABLE): *.cpp
 
 clean:
 	-rm $(EXECUTABLE)
+	rm -rf outputs/*
