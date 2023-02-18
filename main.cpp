@@ -15,6 +15,8 @@ using namespace std;
 int main()
 {
     int input_count, output_count = 0;
+    vector<double> slew_rates = {0.1, 0.2, 0.3};
+    vector<double> out_loads = {15e-15, 15e-15, 15e-15};
     ifstream input_file("NAND3D0BWP.arcs");
     if (0==(input_file.is_open())){
             cout << "Cannot open file:" << "NAND3D0BWP.arcs" << endl;
@@ -24,13 +26,15 @@ int main()
     vector<string> arcs = parser(input_file, input_count, output_count);
     cout << "Inputs:" << input_count << endl;
     cout << "Outputs:" << output_count << endl;
-    // Create vector to hold switching arcs
-
-    // Generate tests for each arc
-    for (string arc : arcs)
-    {
-        generateTestForArc(arc, 0.1, 10e-15, "rise", "fall");
-        generateTestForArc(arc, 0.1, 10e-15, "fall", "rise");
+    
+    // Generate runset for each arc x capacitance x load
+    for (double capacitance : out_loads){
+        for (double slew : slew_rates){
+            for (string arc : arcs)
+            {
+                generateTestForArc(arc, slew, capacitance, "rise", "fall");
+            }
+        }
     }
 
     // Print completion message
