@@ -1,7 +1,13 @@
 # DPAC
-Standard Cell Characterization Tool
+Open-Source Standard Cell Characterization Tool Developed by Rodrigo N. Wuerdig.
 
-Steps:
+The input of this code comes from another branch:
+
+https://github.com/rodrigowue/s2cae
+
+The other tool outputs a <*>.arcs file from a standard-cell SPICE netlist input.
+
+## Development Steps:
 1. Create Runsets [Under Development]
 2. Run Spice Runsets [not started]
 3. Analyse Results [not started]
