@@ -33,7 +33,22 @@ int main()
         for (double capacitance : out_loads){
             for (string arc : arcs)
             {
-                generateTestForArc(arc, slew, capacitance, "rise", "fall");
+                string input_transition_type = "fall";
+                string output_transition_type = "fall";
+                for(int i = 0; i < input_count; i++){
+                    if(arc[i] == 'R'){
+                        input_transition_type = "rise";
+                        break;
+                    }
+                }
+                for(int i = input_count-1; i < (input_count + output_count)-1; i++){
+                    if(arc[i] == 'R'){
+                        output_transition_type = "rise";
+                        break;
+                    }
+                }
+                generateTestForArc(arc, slew, capacitance, input_transition_type, output_transition_type);
+                
             }
         }
     }
